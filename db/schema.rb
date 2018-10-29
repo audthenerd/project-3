@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_024836) do
+
+ActiveRecord::Schema.define(version: 2018_10_29_023321) do
+#add_devise
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +73,32 @@ ActiveRecord::Schema.define(version: 2018_10_29_024836) do
     t.text "category"
     t.decimal "lat", precision: 10, scale: 8
     t.decimal "long", precision: 10, scale: 8
+  end
+
+  create_table "usercusts", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "role", default: "usercust"
+    t.index ["email"], name: "index_usercusts_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_usercusts_on_reset_password_token", unique: true
+  end
+
+  create_table "userrests", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "role", default: "userrest"
+    t.index ["email"], name: "index_userrests_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_userrests_on_reset_password_token", unique: true
   end
 
   add_foreign_key "menu_items", "restaurants"
