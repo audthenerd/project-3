@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :restaurants
 
+  resources :menu_items
+  resources :reservations
+
   devise_for :usercusts
   devise_for :userrests
 
