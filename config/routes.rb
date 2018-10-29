@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-
   resources :customers
+
+  resources :restaurants
 
   devise_for :usercusts
   devise_for :userrests
