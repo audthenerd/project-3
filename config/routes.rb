@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
 
-
-  get 'reservations/index'
-  get 'reservations/new'
-  get 'reservations/show'
-  get 'menu_items/index'
-  get 'menu_items/new'
-  get 'menu_items/show'
   resources :customers
+
+  resources :restaurants
 
   devise_for :usercusts
   devise_for :userrests

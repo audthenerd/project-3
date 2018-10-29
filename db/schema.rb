@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_10_29_023321) do
-#add_devise
+ActiveRecord::Schema.define(version: 2018_10_29_045057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +23,8 @@ ActiveRecord::Schema.define(version: 2018_10_29_023321) do
     t.datetime "updated_at", null: false
     t.decimal "lat", precision: 10, scale: 8
     t.decimal "long", precision: 10, scale: 8
+    t.bigint "usercust_id"
+    t.index ["usercust_id"], name: "index_customers_on_usercust_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 2018_10_29_023321) do
     t.text "category"
     t.decimal "lat", precision: 10, scale: 8
     t.decimal "long", precision: 10, scale: 8
+    t.bigint "userrest_id"
+    t.index ["userrest_id"], name: "index_restaurants_on_userrest_id"
   end
 
   create_table "usercusts", force: :cascade do |t|
@@ -101,5 +103,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_023321) do
     t.index ["reset_password_token"], name: "index_userrests_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "customers", "usercusts"
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "restaurants", "userrests"
 end
