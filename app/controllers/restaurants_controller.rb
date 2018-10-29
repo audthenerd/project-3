@@ -2,7 +2,11 @@ class RestaurantsController < ApplicationController
   def index
     # if user is a userrest then show his restaurant
     # else
+    if current_userrest
+      @restaurants = Restaurant.where(userrest_id: current_userrest.id)
+    else
     @restaurants = Restaurant.all
+    end
   end
 
   def show
@@ -17,6 +21,8 @@ class RestaurantsController < ApplicationController
   def create
     # render plain: params[:restaurant].inspect
     @restaurant = Restaurant.new(restro_params) 
+    @restaurant.userrest= current_userrest
+
     if @restaurant.image_url
       uploaded_file = params[:restaurant][:image_url].path
       cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
@@ -57,7 +63,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restro_params
-    params.require(:restaurant).permit(:name, :category, :location, :lat, :long, :image_url, :image2_url, :image3_url)
+    params.require(:restaurant).permit(:name, :category, :location, :lat, :long, :image_url, :image2_url, :image3_url, :userrest_id)
   end
 
 end
