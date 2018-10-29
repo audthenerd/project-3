@@ -1,11 +1,13 @@
 class HomeController < ApplicationController
-  before_action :authenticate_usercust!, :authenticate_usercust! , :check_user
+  # before_action :authenticate_usercust! , :check_user
 
-  def check_user
-    if current_user.role == "customer"
-    redirect_to url('http://google.com')
-  end
-  end
+  # def check_user
+  #   if current_userrest?
+  #   redirect_to url('http://google.com')
+  # elsif current_usercust?
+  #   redirect_to url('http://google.com')
+  #   end
+  # end
 
 
 def index
