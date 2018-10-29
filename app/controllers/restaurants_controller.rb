@@ -1,5 +1,7 @@
 class RestaurantsController < ApplicationController
   def index
+    # if user is a userrest then show his restaurant
+    # else
     @restaurants = Restaurant.all
   end
 
@@ -10,7 +12,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    # render plain: params[:post].inspect
+    # render plain: params[:restaurant].inspect
     @restaurant = Restaurant.new(post_params) 
 
     if @restaurant.save

@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :customers
+  resources :customers do
+    resources :reservations
+    resources :orders
+    resources :restaurants
+  end
+
   resources :orders
 
-  resources :restaurants
+  resources :restaurants do
+    resources :menu_items
+    resources :orders
+    resources :reservations
+    resources :customers
+  end
 
   resources :menu_items
   resources :reservations
