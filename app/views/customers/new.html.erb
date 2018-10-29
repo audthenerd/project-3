@@ -1,0 +1,22 @@
+<h1>Next step, set up your profile. </h1>
+
+<%#= link_to 'log out', destroy_user_session_url, method: :delete %>
+
+<%= form_with scope: :customer, url: customers_path, local: true do |form| %>
+
+	<p>
+		<%= form.label :name %><br>
+		<%= form.text_field :name %>
+	</p>
+
+	<p>
+		<%= form.label :preference %><br>
+		<%= form.text_area :preference %>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>
+
+<%= link_to 'Back', customers_path %>

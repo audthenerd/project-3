@@ -1,11 +1,18 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.all
+    @customer = Customer.all
+    if params[:restaurant]
+      @restaurant = Restaurant.where('restaurant LIKE ?', "%#{params[:restaurant]}%")
+    else
+      @restaurant = Restaurant.all
+    end
+
   end
 
 
   def show
+    @customer = Customer.find(params[:id])
 
   end
 
@@ -14,6 +21,11 @@ class CustomersController < ApplicationController
   end
 
   def create
+
+    @customer = Customer.new(customer_params)
+    @customer.save
+
+    redirect_to customers_path
 
   end
 
@@ -34,14 +46,12 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :preferences)
+    params.require(:customer).permit(:name, :preference)
   end
 
-
-
-
-
-
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :category)
+  end
 
 
 end
