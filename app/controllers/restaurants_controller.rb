@@ -39,18 +39,22 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.userrest == current_userrest
+      @restaurant = Restaurant.find(params[:id])
+    else
+      render 'index'
+    end
   end
 
   def update
     @restaurant = Restaurant.find(params[:id])
 
-    # if @post.user == current_user
+     if @restaurant.userrest == current_userrest
       @restaurant.update(restro_params)
       redirect_to @restaurant
-    # else
-    #   redirect_to @restaurant
-    # end
+    else
+       render 'index'
+    end
   end
 
   def destroy
