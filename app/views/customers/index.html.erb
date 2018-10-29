@@ -1,0 +1,10 @@
+
+<h1>Search for your favourite restaurant</h1>
+
+
+
+<%= form_tag(restaurants_path method: :get) do %>
+  Store <%= text_field_tag :restaurant %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
