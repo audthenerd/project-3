@@ -3,6 +3,12 @@ class RestaurantsController < ApplicationController
     # if user is a userrest then show his restaurant
     # else
     @restaurants = Restaurant.all
+
+    if params[:name]
+       @search = Restaurant.where('name LIKE?', "%#{params[:name]}%")
+       puts @search.inspect
+       puts "banana"
+    end
   end
 
   def show
@@ -12,8 +18,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    # render plain: params[:restaurant].inspect
-    @restaurant = Restaurant.new(post_params) 
+    render plain: params[:restaurant].inspect
+    @restaurant = Restaurant.new(post_params)
 
     if @restaurant.save
       redirect_to @restaurant
@@ -31,9 +37,6 @@ class RestaurantsController < ApplicationController
 
       @restaurant.update(restro_params)
       redirect_to @restaurant
-    else
-      redirect_to @restaurant
-    end
   end
 
   def destroy
@@ -46,5 +49,6 @@ class RestaurantsController < ApplicationController
 
   private
   def restro_params
-    parmas.require(:restaurant).permit(:name, :category, :location, :lat, :long)
+    params.require(:restaurant).permit(:name, :category, :location, :lat, :long)
+  end
 end
