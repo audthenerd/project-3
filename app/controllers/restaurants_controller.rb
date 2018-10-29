@@ -28,7 +28,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.save
       redirect_to @restaurant
     else
-      
+      render 'new'
     end
   end
 
@@ -39,11 +39,12 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
 
+    # if @post.user == current_user
       @restaurant.update(restro_params)
       redirect_to @restaurant
-    else
-      redirect_to @restaurant
-    end
+    # else
+    #   redirect_to @restaurant
+    # end
   end
 
   def destroy
@@ -53,8 +54,11 @@ class RestaurantsController < ApplicationController
     redirect_to restaurants_path
   end
 
-
   private
+
   def restro_params
     params.require(:restaurant).permit(:name, :category, :location, :lat, :long, :image_url, :image2_url, :image3_url)
+  end
+
 end
+
