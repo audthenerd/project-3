@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_045057) do
+ActiveRecord::Schema.define(version: 2018_10_29_052700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_045057) do
     t.decimal "lat", precision: 10, scale: 8
     t.decimal "long", precision: 10, scale: 8
     t.bigint "usercust_id"
+    t.text "image_url"
     t.index ["usercust_id"], name: "index_customers_on_usercust_id"
   end
 
@@ -74,6 +75,9 @@ ActiveRecord::Schema.define(version: 2018_10_29_045057) do
     t.decimal "lat", precision: 10, scale: 8
     t.decimal "long", precision: 10, scale: 8
     t.bigint "userrest_id"
+    t.text "image_url"
+    t.text "image2_url"
+    t.text "image3_url"
     t.index ["userrest_id"], name: "index_restaurants_on_userrest_id"
   end
 
