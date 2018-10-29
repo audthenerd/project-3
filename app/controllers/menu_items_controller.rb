@@ -1,5 +1,9 @@
+require 'byebug'
+
 class MenuItemsController < ApplicationController
   def index
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menuitems = MenuItem.where(restaurant_id: params[:restaurant_id])
   end
 
   def create
@@ -9,6 +13,7 @@ class MenuItemsController < ApplicationController
   end
 
   def edit
+    @menuitem = MenuItem.find(params[:id])
   end
 
   def show
@@ -25,3 +30,4 @@ class MenuItemsController < ApplicationController
   params.require(:menu_item).permit(:item, :restaurant_id, :price)
 end
 end
+
